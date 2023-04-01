@@ -9,7 +9,7 @@ firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-for i in range(66):
+for i in range(1500):
 
     f_name = names.get_first_name()
     age = randint(18, 85)
