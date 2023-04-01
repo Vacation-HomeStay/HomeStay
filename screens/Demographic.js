@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/core";
+
 import {
 	View,
 	ScrollView,
@@ -9,8 +11,11 @@ import {
 	Alert,
 } from "react-native";
 import { db, auth } from "../firebase";
+
 const usersRef = db.collection("users");
+
 export default function Demographic() {
+	const navigation = useNavigation();
 	const [age, setAge] = useState("");
 	const [housestayType, setHousestayType] = useState("");
 	const [activityType, setActivityType] = useState("");
@@ -41,7 +46,8 @@ export default function Demographic() {
 			usersRef
 				.doc(userUid).set(userData)
 				.then(() => {
-					alert("User data added to Firestore!");
+					// alert("User data added to Firestore!");
+					navigation.replace("Home");
 				})
 				.catch((error) => {
 					alert("Error adding user data to Firestore: " + error);
