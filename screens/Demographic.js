@@ -9,7 +9,7 @@ import {
 	Alert,
 } from "react-native";
 import { db } from "../firebase";
-const usersRef = db.collection('users');
+const usersRef = db.collection("users");
 export default function Demographic() {
 	const [age, setAge] = useState("");
 	const [housestayType, setHousestayType] = useState("");
