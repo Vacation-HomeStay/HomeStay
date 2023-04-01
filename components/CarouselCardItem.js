@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
 export const SLIDER_WIDTH = Dimensions.get("window").width + 80;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
-// 
+
 export default function CarouselCardItem( {item	, index} ) {
 	const [isLiked, setIsLiked] = useState(false);
 	const toggleLike = () => {
