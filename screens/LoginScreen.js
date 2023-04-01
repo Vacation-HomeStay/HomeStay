@@ -18,21 +18,20 @@ const LoginScreen = () => {
 	const navigation = useNavigation();
 
 	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((user) => {	
+		const unsubscribe = auth.onAuthStateChanged((user) => {
 			if (user) {
 				userUid = auth.currentUser.uid;
 				usersRef = docRef.doc(userUid);
 				usersRef.get().then((doc) => {
-					if(doc.exists){
+					if (doc.exists) {
 						console.log("EXISTS");
+						// navigation.replace("WithDemographic");
 						navigation.replace("Home");
-					}
-					else{
+					} else {
 						console.log("NO EXISTS");
 						navigation.replace("Demographic");
 					}
 				});
-				
 			}
 		});
 
