@@ -6,7 +6,23 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import Demographic from "./screens/Demographic";
+import SavedScreen from "./screens/SavedScreen";
+import SettingsScreen from "./screens/SettingsScreen";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+const Tab = createBottomTabNavigator();
+
 const Stack = createNativeStackNavigator();
+
+function HomeTabs() {
+	return (
+		<Tab.Navigator>
+			<Tab.Screen name="Home" component={HomeScreen} />
+			<Tab.Screen name="Profile" component={Demographic} />
+			<Tab.Screen name="Saved" component={SavedScreen} />
+			<Tab.Screen name="Setting" component={SettingsScreen} />
+		</Tab.Navigator>
+	);
+}
 
 export default function App() {
   return (
@@ -17,7 +33,7 @@ export default function App() {
           name="Login"
           component={LoginScreen}
         />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeTabs} />
         <Stack.Screen name="Demographic" component={Demographic} />
 
       </Stack.Navigator>

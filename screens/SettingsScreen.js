@@ -1,20 +1,14 @@
-import React from "react";
-import { View, Text } from "react-native";
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
-class SettingsScreen extends React.Component {
-	render() {
-		return (
-			<View
-				style={{
-					flex: 1,
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				<Text>Settings Screen</Text>
-			</View>
-		);
-	}
+const SettingsScreen = () => {
+  return (
+	<View>
+	  <Text>SettingsScreen</Text>
+	</View>
+  )
 }
 
-export default SettingsScreen;
+export default SettingsScreen
+
+const styles = StyleSheet.create({})
