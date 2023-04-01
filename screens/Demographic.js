@@ -8,7 +8,7 @@ import {
 	TouchableOpacity,
 	Alert,
 } from "react-native";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 const usersRef = db.collection("users");
 export default function Demographic() {
 	const [age, setAge] = useState("");
@@ -34,10 +34,12 @@ export default function Demographic() {
 					familyType: familyType,
 				},
 			};
-
+			
 			// Add the user's data to the Firestore collection
+			userUid = auth.currentUser.uid;
+			console.log(userUid);
 			usersRef
-				.add(userData)
+				.doc(userUid).set(userData)
 				.then(() => {
 					alert("User data added to Firestore!");
 				})
@@ -45,7 +47,7 @@ export default function Demographic() {
 					alert("Error adding user data to Firestore: " + error);
 				});
 		} else {
-			Alert.alert("Please fill out all fields");
+			Alert.alert("Please fill out all fields");	
 		}
 	};
 	return (
