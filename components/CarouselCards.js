@@ -6,6 +6,7 @@ import fakedata from "../fakedata";
 
 const CarouselCards = () => {
 	const [index, setIndex] = React.useState(0);
+
 	const isCarousel = React.useRef(null);
 
 	return (
@@ -15,13 +16,13 @@ const CarouselCards = () => {
 				layoutCardOffset={9}
 				ref={isCarousel}
 				data={fakedata}
-				renderItem={CarouselCardItem}
+				renderItem={({ item, index }) => <CarouselCardItem item={item} index={index} />}
+				renderITem={CarouselCardItem}
 				sliderWidth={SLIDER_WIDTH}
 				itemWidth={ITEM_WIDTH}
 				onSnapToItem={(index) => setIndex(index)}
 				useScrollView={true}
 			/>
-
 			<Pagination
 				dotsLength={fakedata.length}
 				activeDotIndex={index}
