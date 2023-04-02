@@ -1,16 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
+import {
+	View,
+	Text,
+	StyleSheet,
+	Dimensions,
+	Image,
+	Button,
+} from "react-native";
+import { useNavigation } from "@react-navigation/core";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
 export const SLIDER_WIDTH = Dimensions.get("window").width + 80;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 
-export default function CarouselCardItem( {item	, index} ) {
+export default function CarouselCardItem({ item, index }) {
+	const navigation = useNavigation();
 	const [isLiked, setIsLiked] = useState(false);
 	const toggleLike = () => {
 		setIsLiked(!isLiked);
-	  }
+	};
+
 	return (
 		<View style={styles.container} key={index}>
 			<Image source={{ uri: item.imgUrl }} style={styles.image} />
@@ -22,14 +32,28 @@ export default function CarouselCardItem( {item	, index} ) {
 			>
 				<Text style={styles.header}>{item.title}</Text>
 				<TouchableOpacity onPress={toggleLike}>
-					<AntDesign name={isLiked ? "heart" : "hearto"} size={24} color="#ff7875" paddingRight={20} style={styles.header}/>
+					<AntDesign
+						name={isLiked ? "heart" : "hearto"}
+						size={24}
+						color="#ff7875"
+						paddingRight={20}
+						style={styles.header}
+					/>
 				</TouchableOpacity>
 			</View>
 
 			<Text style={styles.body}>{item.body}</Text>
+			<Button
+				onPress={() => {
+					navigation.navigate("Listings", {
+						city:item.city
+					});
+				}}
+				title={item.title}
+			/>
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
@@ -72,4 +96,3 @@ const styles = StyleSheet.create({
 		paddingRight: 20,
 	},
 });
-

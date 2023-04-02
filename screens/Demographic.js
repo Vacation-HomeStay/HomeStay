@@ -20,6 +20,7 @@ export default function Demographic() {
 	const [housestayType, setHousestayType] = useState("");
 	const [activityType, setActivityType] = useState("");
 	const [name, setName] = useState("");
+	const [budget, setBudget] = useState(0);
 	const [familyType, setFamilyType] = useState("");
 	const handleSubmit = () => {
 		// handle form submission, e.g. send data to Firestore
@@ -33,6 +34,7 @@ export default function Demographic() {
 			const userData = {
 				name: name,
 				age: age,
+				budget: budget,
 				preferences: {
 					housestayType: housestayType,
 					activityType: activityType,
@@ -80,6 +82,13 @@ export default function Demographic() {
 				keyboardType="numeric"
 				onChangeText={(text) => setAge(text)}
 				value={age}
+			/>
+			<TextInput
+				style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+				placeholder="Budget"
+				keyboardType="numeric"
+				onChangeText={(text) => setBudget(text)}
+				value={budget}
 			/>
 			<Text>House Preferance?</Text>
 			<TouchableOpacity onPress={() => setHousestayType("Apartment")}>

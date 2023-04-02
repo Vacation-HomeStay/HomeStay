@@ -5,16 +5,28 @@ import {
 	TouchableOpacity,
 	View,
 	ScrollView,
-  FlatList,
+	FlatList,
 	Image,
 } from "react-native";
 import { db, auth } from "../firebase";
 import { useNavigation } from "@react-navigation/core";
 
 const residencesRef = db.collection("individual_residence");
+function getDate(seconds) {
+	// var utcSeconds = 1234567890;
+	var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+	d.setUTCSeconds(seconds);
+	const year = d.getFullYear();
+	const month = String(d.getMonth() + 1).padStart(2, "0");
+	const day = String(d.getDate()).padStart(2, "0");
 
+	// Format the date string in YYYY-MM-DD format
+	const formattedDate = month + "/" + day + "/" + year;
+	return formattedDate;
+}
 const ResidenciesList = ({ city }) => {
 	const navigation = useNavigation();
+
 	const [residences, setResidences] = useState([]);
 
 	useEffect(() => {
@@ -27,7 +39,12 @@ const ResidenciesList = ({ city }) => {
 					id: doc.id,
 					host_name: doc.data().host_name,
 					cost: doc.data().cost,
+					first_day: doc.data().open_days[0].seconds,
+					second_day: doc.data().open_days[1].seconds,
 					images: doc.data().images,
+					city: doc.data().city,
+					contact: doc.data().host_contact,
+					room_number: doc.data().number_of_rooms,
 				}))
 			);
 		});
@@ -36,18 +53,32 @@ const ResidenciesList = ({ city }) => {
 	return (
 		<FlatList
 			data={residences}
-			keyExtractor={(item) => item.id.toString()}
+			keyExtractor={(item) => {
+				item.id.toString();
+			}}
 			renderItem={({ item }) => (
 				<TouchableOpacity
 					onPress={() =>
-						navigation.navigate("SpecificResidence", { id: item.id })
+						navigation.navigate("SpecificResidence", {
+							navigation: navigation,
+							item: item,
+						})
 					}
 				>
 					<View style={styles.container}>
 						<Text style={styles.hostName}>{item.host_name}</Text>
-						<Text style={styles.cost}>{"$"+item.cost}</Text>
-            <Image source={{uri: item.images[0]}} style={styles.image}/>
-						
+						<Text style={styles.cost}>{"$" + item.cost}</Text>
+						{/* change styling */}
+						<Text style={styles.cost}>
+							{getDate(item.first_day)}{" "}
+						</Text>
+						<Text style={styles.cost}>
+							{getDate(item.second_day)}{" "}
+						</Text>
+						<Image
+							source={{ uri: item.images[0] }}
+							style={styles.image}
+						/>
 					</View>
 				</TouchableOpacity>
 			)}
