@@ -16,7 +16,7 @@ const SettingsScreen = () => {
 	};
 	return (
 		<View>
-			<ResidenciesList city = "Paris"></ResidenciesList>
+			<ResidenciesList city = "Mumbai"></ResidenciesList>
 			<Text>Settings</Text>
 			<TouchableOpacity onPress={handleSignOut} style={styles.button}>
 				<Text style={styles.buttonText}>Sign out</Text>
