@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Image } from 'react-native';
+import { Image } from "react-native";
 import {
 	View,
 	ScrollView,
@@ -60,16 +60,22 @@ export default function Demographic() {
 		}
 	};
 	return (
-		<View style={{backgroundColor: "#efeaed"}}>
-			<Image source={require('../assets/image.png')} style={{width:350}} resizeMode="contain"/>
+		<View style={{ backgroundColor: "#efeaed" }}>
+			<Image
+				source={require("../assets/image.png")}
+				style={{ width: 350 }}
+				resizeMode="contain"
+			/>
 			<ScrollView
 				contentContainerStyle={{ flexGrow: 1 }}
 				keyboardShouldPersistTaps="handled"
-				style={{ paddingLeft: 20, paddingRight:20, paddingBottom:20, paddingVertical:5 }}
+				style={{
+					paddingLeft: 20,
+					paddingRight: 20,
+					paddingBottom: 20,
+					paddingVertical: 5,
+				}}
 			>
-				
-				
-
 				<Text
 					style={{
 						fontSize: 30,
@@ -229,13 +235,13 @@ export default function Demographic() {
 							color: "#FFF",
 							fontSize: 16,
 							fontWeight: "bold",
-							textAlign: "center"
+							textAlign: "center",
 						}}
 					>
 						Submit
 					</Text>
 				</TouchableOpacity>
-				<View height={100}></View>
+				<View height={270}></View>
 			</ScrollView>
 		</View>
 	);
