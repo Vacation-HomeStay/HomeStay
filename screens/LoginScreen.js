@@ -6,7 +6,7 @@ import {
 	Text,
 	TextInput,
 	TouchableOpacity,
-	View,
+	View, Image
 } from "react-native";
 import { db, auth } from "../firebase";
 const docRef = db.collection("users");
@@ -57,6 +57,9 @@ const LoginScreen = () => {
 	};
 
 	return (
+
+		<>
+		<Image source={require('../assets/image.png')} style={{width:350, marginTop: 50, marginHorizontal: 20}} resizeMode="contain"/>
 		<KeyboardAvoidingView style={styles.container} behavior="padding">
 			<View style={styles.inputContainer}>
 				<TextInput
@@ -86,6 +89,16 @@ const LoginScreen = () => {
 				</TouchableOpacity>
 			</View>
 		</KeyboardAvoidingView>
+		
+		
+		
+		
+		
+		
+		
+		
+		</>
+		
 	);
 };
 
@@ -105,7 +118,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 15,
 		paddingVertical: 10,
 		borderRadius: 10,
-		marginTop: 5,
+		marginTop: 15,
 	},
 	buttonContainer: {
 		width: "60%",

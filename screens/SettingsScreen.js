@@ -20,15 +20,17 @@ const SettingsScreen = () => {
 				style={{
 					fontSize: 30,
 					marginTop: 55,
-					paddingHorizontal: 10,
+					paddingHorizontal: 140,
 					color: "#2596be",
 				}}
 			>
 				Settings
 			</Text>
-			<TouchableOpacity onPress={handleSignOut} style={styles.button}>
-				<Text style={styles.buttonText}>Sign out</Text>
-			</TouchableOpacity>
+			<View style={{marginLeft:99}}>
+				<TouchableOpacity onPress={handleSignOut} style={styles.button}>
+					<Text style={styles.buttonText}>Sign out</Text>
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 };
@@ -39,11 +41,10 @@ const styles = StyleSheet.create({
 	button: {
 		backgroundColor: "#1E88E5",
 		paddingVertical: 10,
-		paddingHorizontal: 60,
-
+		paddingHorizontal: 5,
 		borderRadius: 12,
 		width: 200,
-		marginTop: 20,
+		marginTop: 290,
 	},
 	buttonText: {
 		color: "#FFF",

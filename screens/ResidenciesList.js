@@ -52,7 +52,7 @@ const ResidenciesList = ({ city }) => {
 
 	return (
 		<View padding={30} >
-			<Text style = {{color: "#2596be", fontSize:30, textAlign: "center"}}>Homestays in {city}</Text>
+			<Text style = {{color: "#2596be", fontSize:30, textAlign: "center", marginTop:20}}>Homestays in {city}</Text>
 			<FlatList
 				contentContainterStyle={styles.packagesListContainer}
 				data={residences}
@@ -75,19 +75,11 @@ const ResidenciesList = ({ city }) => {
 							<Text style={styles.cost}>
 								{"$" + item.cost + "/night"}
 							</Text>
-							{/* change styling */}
-							<Text style={styles.cost}>
-								{getDate(item.first_day)}{" "}
-							</Text>
-							<Text>to</Text>
-							<Text style={styles.cost}>
-								{getDate(item.second_day)}{" "}
-							</Text>
 							<Image
 								source={{ uri: item.images[0] }}
 								style={styles.image}
 							/>
-							<View style={{ marginTop: 40 }}></View>
+							<View style={{ marginTop: 80 }}></View>
 						</View>
 					</TouchableOpacity>
 				)}
@@ -118,8 +110,8 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	image: {
-		width: "155%",
-		height: "155%",
+		width: "175%",
+		height: "160%",
 		borderRadius: 10,
 		marginHorizontal: 10,
 		marginVertical: 1,
