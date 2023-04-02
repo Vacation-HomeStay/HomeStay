@@ -10,6 +10,7 @@ import SavedScreen from "./screens/SavedScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import SpecificResidence from "./screens/SpecificResidence";
 
 const Tab = createBottomTabNavigator();
 
@@ -77,6 +78,7 @@ export default function App() {
 				/>
 				<Stack.Screen name="Home" component={HomeTabs} />
 				<Stack.Screen name="Demographic" component={Demographic} />
+				<Stack.Screen name="SpecificResidence" component={SpecificResidence}/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

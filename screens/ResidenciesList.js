@@ -40,7 +40,7 @@ const ResidenciesList = ({ city }) => {
 			renderItem={({ item }) => (
 				<TouchableOpacity
 					onPress={() =>
-						navigation.navigate("Details", { id: item.id })
+						navigation.navigate("SpecificResidence", { id: item.id })
 					}
 				>
 					<View style={styles.container}>
