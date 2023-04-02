@@ -1,14 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from "react";
+import { useNavigation } from "@react-navigation/core";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { auth } from "../firebase";
+import ResidenciesList from "./ResidenciesList";
 
 const SettingsScreen = () => {
-  return (
-	<View>
-	  <Text>SettingsScreen</Text>
-	</View>
-  )
-}
+	const navigation = useNavigation();
 
-export default SettingsScreen
+	const handleSignOut = () => {
+		auth.signOut()
+			.then(() => {
+				navigation.replace("Login");
+			})
+			.catch((error) => alert(error.message));
+	};
+	return (
+		<View>
+			<ResidenciesList city = "Paris"></ResidenciesList>
+			<Text>Settings</Text>
+			<TouchableOpacity onPress={handleSignOut} style={styles.button}>
+				<Text style={styles.buttonText}>Sign out</Text>
+			</TouchableOpacity>
+		</View>
+	);
+};
 
-const styles = StyleSheet.create({})
+export default SettingsScreen;
+
+const styles = StyleSheet.create({});
