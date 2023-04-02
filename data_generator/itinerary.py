@@ -24,7 +24,8 @@ print('oki')
 ir_docs = db.collection("individual_residence").list_documents()
 vac_ids = [d.id for d in ir_docs]
 print("doki")
-for vac_id in vac_ids:
+for c,vac_id in enumerate(vac_ids):
+    print(c,len(open_uid))
     random_uid = open_uid[randint(0, len(open_uid) - 1)]
     open_uid.remove(random_uid)
 
@@ -34,5 +35,5 @@ for vac_id in vac_ids:
         listofiternary.append(iternarytext)
 
     data = {"host_uid": random_uid, "itinerary": listofiternary}
-    db.collection("itinerary").add(data)
-    print(i)
+    db.collection("itinerary").document(vac_id).set(data)
+    # print(i)
