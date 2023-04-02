@@ -16,12 +16,16 @@ const SettingsScreen = () => {
 	};
 	return (
 		<View>
-			<Text 					style={{
-						fontSize: 30,
-						marginTop: 55,
-						paddingHorizontal: 10,
-						color: "#2596be",
-					}}>Settings</Text>
+			<Text
+				style={{
+					fontSize: 30,
+					marginTop: 55,
+					paddingHorizontal: 10,
+					color: "#2596be",
+				}}
+			>
+				Settings
+			</Text>
 			<TouchableOpacity onPress={handleSignOut} style={styles.button}>
 				<Text style={styles.buttonText}>Sign out</Text>
 			</TouchableOpacity>
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "#1E88E5",
 		paddingVertical: 10,
 		paddingHorizontal: 60,
-		
+
 		borderRadius: 12,
 		width: 200,
 		marginTop: 20,
