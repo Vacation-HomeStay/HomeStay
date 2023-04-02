@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from faker import Faker
 from datetime import datetime, timedelta
 from image import get_image
-
+from lorem_text import lorem
 cred = credentials.Certificate("../secrets/homestay.json")
 firebase_admin.initialize_app(cred)
 
