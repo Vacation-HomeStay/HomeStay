@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-
+import { Image } from 'react-native';
 import {
 	View,
 	ScrollView,
@@ -60,12 +60,16 @@ export default function Demographic() {
 		}
 	};
 	return (
-		<View>
+		<View style={{backgroundColor: "#efeaed"}}>
+			<Image source={require('../assets/image.png')} style={{width:350}} resizeMode="contain"/>
 			<ScrollView
 				contentContainerStyle={{ flexGrow: 1 }}
 				keyboardShouldPersistTaps="handled"
-				style={{ padding: 20 }}
+				style={{ paddingLeft: 20, paddingRight:20, paddingBottom:20, paddingVertical:5 }}
 			>
+				
+				
+
 				<Text
 					style={{
 						fontSize: 30,

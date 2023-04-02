@@ -40,11 +40,11 @@ const Review = ({  rating, reviewText, user_uid , date}) => {
 			});
 	}, []);
 	return (
-		<View paddingLeft={20} paddingTop={50} paddingRight={25}>
-			<Text>
-				{rating} by {userName} at {getDate(date)}
+		<View style= {{paddingLeft:20, paddingTop:20, paddingRight:25, marginTop:1, font: 'bold'}}>
+			<Text style = {{fontSize: 20, fontWeight: 'bold'}}>
+				Rated {rating} by {userName} at {getDate(date)}
 			</Text>
-			<Text> comment: {reviewText} </Text>
+			<Text marginTop = {10}>Comment: {reviewText} </Text>
 		</View>
 	);
 };

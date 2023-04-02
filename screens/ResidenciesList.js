@@ -51,38 +51,48 @@ const ResidenciesList = ({ city }) => {
 	}, []);
 
 	return (
-		<FlatList
-			data={residences}
-			keyExtractor={(item) => {
-				item.id.toString();
-			}}
-			renderItem={({ item }) => (
-				<TouchableOpacity
-					onPress={() =>
-						navigation.navigate("SpecificResidence", {
-							navigation: navigation,
-							item: item,
-						})
-					}
-				>
-					<View style={styles.container}>
-						<Text style={styles.hostName}>{item.host_name}</Text>
-						<Text style={styles.cost}>{"$" + item.cost}</Text>
-						{/* change styling */}
-						<Text style={styles.cost}>
-							{getDate(item.first_day)}{" "}
-						</Text>
-						<Text style={styles.cost}>
-							{getDate(item.second_day)}{" "}
-						</Text>
-						<Image
-							source={{ uri: item.images[0] }}
-							style={styles.image}
-						/>
-					</View>
-				</TouchableOpacity>
-			)}
-		/>
+		<View padding={30} >
+			<Text style = {{color: "#2596be", fontSize:30, textAlign: "center"}}>Homestays in {city}</Text>
+			<FlatList
+				contentContainterStyle={styles.packagesListContainer}
+				data={residences}
+				keyExtractor={(item) => {
+					item.id.toString();
+				}}
+				renderItem={({ item }) => (
+					<TouchableOpacity
+						onPress={() =>
+							navigation.navigate("SpecificResidence", {
+								navigation: navigation,
+								item: item,
+							})
+						}
+					>
+						<View style={styles.container}>
+							<Text style={styles.hostName}>
+								{item.host_name}
+							</Text>
+							<Text style={styles.cost}>
+								{"$" + item.cost + "/night"}
+							</Text>
+							{/* change styling */}
+							<Text style={styles.cost}>
+								{getDate(item.first_day)}{" "}
+							</Text>
+							<Text>to</Text>
+							<Text style={styles.cost}>
+								{getDate(item.second_day)}{" "}
+							</Text>
+							<Image
+								source={{ uri: item.images[0] }}
+								style={styles.image}
+							/>
+							<View style={{ marginTop: 40 }}></View>
+						</View>
+					</TouchableOpacity>
+				)}
+			/>
+		</View>
 	);
 };
 
@@ -91,7 +101,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
-		padding: 20,
+		padding: 100,
 	},
 	title: {
 		fontSize: 24,
@@ -108,9 +118,19 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	image: {
-		width: 200,
-		height: 200,
+		width: "155%",
+		height: "155%",
+		borderRadius: 10,
 		marginHorizontal: 10,
+		marginVertical: 1,
+	},
+	packagesList: {
+		backgroundColor: "#89CFF0",
+	},
+	packagesListContainer: {
+		backgroundColor: "#1a1d27",
+		paddingVertical: 8,
+		marginHorizontal: 8,
 	},
 });
 

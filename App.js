@@ -42,7 +42,7 @@ function HomeTabs() {
 					),
 				}}
 			/>
-			<Tab.Screen
+			{/* <Tab.Screen
 				name="Saved"
 				component={SavedScreen}
 				options={{
@@ -51,7 +51,7 @@ function HomeTabs() {
 						<FontAwesome name="bookmark" size={size} color={color} />
 					),
 				}}
-			/>
+			/> */}
 			<Tab.Screen
 				name="Setting"
 				component={SettingsScreen}
