@@ -10,7 +10,11 @@ import SavedScreen from "./screens/SavedScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import SpecificResidence from "./screens/SpecificResidence";
 
+
+import Listings from "./screens/Listings"
+import { TouchableOpacity } from "react-native";
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
@@ -52,6 +56,7 @@ function HomeTabs() {
 				name="Setting"
 				component={SettingsScreen}
 				options={{
+					headerShown: false,
 					tabBarLabel: "Settings",
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="settings" size={size} color={color} />
@@ -67,7 +72,7 @@ export default function App() {
 		<NavigationContainer>
 			<Stack.Navigator
 				screenOptions={{
-					headerShown: false,
+					headerShown: false	
 				}}
 			>
 				<Stack.Screen
@@ -76,7 +81,10 @@ export default function App() {
 					component={LoginScreen}
 				/>
 				<Stack.Screen name="Home" component={HomeTabs} />
-				<Stack.Screen name="Demographic" component={Demographic} />
+				<Stack.Screen name="Demographic" component={Demographic}  />
+				<Stack.Screen name="SpecificResidence" component={SpecificResidence}/>
+				<Stack.Screen name="Listings" component={Listings}/>
+				
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

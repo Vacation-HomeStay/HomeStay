@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/core";
+import { useNavigation } from "@react-navigation/native";
 
 import {
 	View,
@@ -20,6 +20,7 @@ export default function Demographic() {
 	const [housestayType, setHousestayType] = useState("");
 	const [activityType, setActivityType] = useState("");
 	const [name, setName] = useState("");
+	const [budget, setBudget] = useState(0);
 	const [familyType, setFamilyType] = useState("");
 	const handleSubmit = () => {
 		// handle form submission, e.g. send data to Firestore
@@ -33,18 +34,20 @@ export default function Demographic() {
 			const userData = {
 				name: name,
 				age: age,
+				budget: budget,
 				preferences: {
 					housestayType: housestayType,
 					activityType: activityType,
 					familyType: familyType,
 				},
 			};
-			
+
 			// Add the user's data to the Firestore collection
 			userUid = auth.currentUser.uid;
 			console.log(userUid);
 			usersRef
-				.doc(userUid).set(userData)
+				.doc(userUid)
+				.set(userData)
 				.then(() => {
 					// alert("User data added to Firestore!");
 					navigation.replace("Home");
@@ -53,100 +56,184 @@ export default function Demographic() {
 					alert("Error adding user data to Firestore: " + error);
 				});
 		} else {
-			Alert.alert("Please fill out all fields");	
+			Alert.alert("Please fill out all fields");
 		}
 	};
 	return (
-		<ScrollView
-			contentContainerStyle={{ flexGrow: 1 }}
-			keyboardShouldPersistTaps="handled"
-			style={{ padding: 20 }}
-		>
-			<Text style={{ fontSize: 20 }}>Demographics</Text>
-			<TextInput
-				style={{
-					height: 40,
-					borderColor: "gray",
-					borderWidth: 1,
-					marginTop: 10,
-				}}
-				placeholder="Name"
-				onChangeText={(text) => setName(text)}
-				value={name}
-			/>
-			<TextInput
-				style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-				placeholder="Age"
-				keyboardType="numeric"
-				onChangeText={(text) => setAge(text)}
-				value={age}
-			/>
-			<Text>House Preferance?</Text>
-			<TouchableOpacity onPress={() => setHousestayType("Apartment")}>
-				<Text>
-					{housestayType === "Apartment" ? "✅" : "⏺️"} Apartment
-				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={() => setHousestayType("Cabin")}>
-				<Text>{housestayType === "Cabin" ? "✅" : "⏺️"} Cabin</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={() => setHousestayType("House")}>
-				<Text>{housestayType === "House" ? "✅" : "⏺️"} House</Text>
-			</TouchableOpacity>
-
-			<Text>Activity Preference?</Text>
-			<TouchableOpacity onPress={() => setActivityType("Sightseeing")}>
-				<Text>
-					{activityType === "Sightseeing" ? "✅" : "⏺️"} Sightseeing
-				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={() => setActivityType("Adventure")}>
-				<Text>
-					{activityType === "Adventure" ? "✅" : "⏺️"} Adventure
-				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={() => setActivityType("Relaxation")}>
-				<Text>
-					{activityType === "Relaxation" ? "✅" : "⏺️"} Relaxation
-				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={() => setActivityType("Culture")}>
-				<Text>{activityType === "Culture" ? "✅" : "⏺️"} Culture</Text>
-			</TouchableOpacity>
-
-			<Text>What is your family type?</Text>
-			<TouchableOpacity onPress={() => setFamilyType("Single")}>
-				<Text>{familyType === "Single" ? "✅" : "⏺️"} Single</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={() => setFamilyType("Couple")}>
-				<Text>{familyType === "Couple" ? "✅" : "⏺️"} Couple</Text>
-			</TouchableOpacity>
-			<TouchableOpacity
-				onPress={() => setFamilyType("Family with children")}
+		<View>
+			<ScrollView
+				contentContainerStyle={{ flexGrow: 1 }}
+				keyboardShouldPersistTaps="handled"
+				style={{ padding: 20 }}
 			>
-				<Text>
-					{familyType === "Family with children" ? "✅" : "⏺️"} Family
-					with Children
+				<Text
+					style={{
+						fontSize: 30,
+						marginTop: 1,
+						paddingHorizontal: 0,
+						color: "#2596be",
+					}}
+				>
+					Demographics
 				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity
-				onPress={() => setFamilyType("Family with no children")}
-			>
-				<Text>
-					{familyType === "Family with no children" ? "✅" : "⏺️"}{" "}
-					Family with no children
+				<TextInput
+					style={{
+						height: 40,
+						borderRadius: 8,
+						borderColor: "gray",
+						borderWidth: 1,
+						marginTop: 5,
+					}}
+					placeholder="  Name"
+					onChangeText={(text) => setName(text)}
+					value={name}
+				/>
+				<TextInput
+					style={{
+						height: 40,
+						borderColor: "gray",
+						borderWidth: 1,
+						marginTop: 15,
+						borderRadius: 8,
+					}}
+					placeholder="  Age"
+					keyboardType="numeric"
+					onChangeText={(text) => setAge(text)}
+					value={age}
+				/>
+				<TextInput
+					style={{
+						height: 40,
+						borderColor: "gray",
+						borderWidth: 1,
+						marginTop: 15,
+						borderRadius: 8,
+					}}
+					placeholder="  Budget"
+					keyboardType="numeric"
+					onChangeText={(text) => setBudget(text)}
+					value={budget}
+				/>
+				<Text
+					style={{
+						fontSize: 23,
+						marginTop: 20,
+						paddingHorizontal: 0,
+						color: "#2596be",
+					}}
+				>
+					House Preferance?
 				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity onPress={() => setFamilyType("Group of friends")}>
-				<Text>
-					{familyType === "Group of friends" ? "✅" : "⏺️"} Group of
-					friends
+				<TouchableOpacity onPress={() => setHousestayType("Apartment")}>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{housestayType === "Apartment" ? "✅" : "⏺️"} Apartment
+					</Text>
+				</TouchableOpacity>
+
+				<TouchableOpacity onPress={() => setHousestayType("Cabin")}>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{housestayType === "Cabin" ? "✅" : "⏺️"} Cabin
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => setHousestayType("House")}>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{housestayType === "House" ? "✅" : "⏺️"} House
+					</Text>
+				</TouchableOpacity>
+
+				<Text
+					style={{
+						fontSize: 23,
+						marginTop: 20,
+						paddingHorizontal: 0,
+						color: "#2596be",
+					}}
+				>
+					Activity Preference?
 				</Text>
-			</TouchableOpacity>
-			<TouchableOpacity style={styles.button} onPress={handleSubmit}>
-				<Text style={styles.buttonText}>Submit</Text>
-			</TouchableOpacity>
-		</ScrollView>
+				<TouchableOpacity
+					onPress={() => setActivityType("Sightseeing")}
+				>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{activityType === "Sightseeing" ? "✅" : "⏺️"}{" "}
+						Sightseeing
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => setActivityType("Adventure")}>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{activityType === "Adventure" ? "✅" : "⏺️"} Adventure
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => setActivityType("Relaxation")}>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{activityType === "Relaxation" ? "✅" : "⏺️"} Relaxation
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => setActivityType("Culture")}>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{activityType === "Culture" ? "✅" : "⏺️"} Culture
+					</Text>
+				</TouchableOpacity>
+
+				<Text
+					style={{
+						fontSize: 23,
+						marginTop: 20,
+						paddingHorizontal: 0,
+						color: "#2596be",
+					}}
+				>
+					What is your family type?
+				</Text>
+				<TouchableOpacity onPress={() => setFamilyType("Single")}>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{familyType === "Single" ? "✅" : "⏺️"} Single
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => setFamilyType("Couple")}>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{familyType === "Couple" ? "✅" : "⏺️"} Couple
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					onPress={() => setFamilyType("Family with children")}
+				>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{familyType === "Family with children" ? "✅" : "⏺️"}{" "}
+						Family with Children
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					onPress={() => setFamilyType("Family with no children")}
+				>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{familyType === "Family with no children" ? "✅" : "⏺️"}{" "}
+						Family with no children
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					onPress={() => setFamilyType("Group of friends")}
+				>
+					<Text style={{ fontSize: 17, marginTop: 10 }}>
+						{familyType === "Group of friends" ? "✅" : "⏺️"} Group
+						of friends
+					</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.button} onPress={handleSubmit}>
+					<Text
+						style={{
+							color: "#FFF",
+							fontSize: 16,
+							fontWeight: "bold",
+							textAlign: "center"
+						}}
+					>
+						Submit
+					</Text>
+				</TouchableOpacity>
+				<View height={100}></View>
+			</ScrollView>
+		</View>
 	);
 }
 const styles = StyleSheet.create({

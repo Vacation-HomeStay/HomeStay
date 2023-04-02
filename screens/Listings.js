@@ -3,10 +3,12 @@ import { useNavigation } from "@react-navigation/core";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { auth } from "../firebase";
 import ResidenciesList from "./ResidenciesList";
+import { db } from "../firebase";
 
-const SettingsScreen = () => {
+const Listings = (city) => {
 	const navigation = useNavigation();
-
+	city = city["route"]["params"]["city"];
+	
 	const handleSignOut = () => {
 		auth.signOut()
 			.then(() => {
@@ -16,12 +18,9 @@ const SettingsScreen = () => {
 	};
 	return (
 		<View>
-			<Text 					style={{
-						fontSize: 30,
-						marginTop: 55,
-						paddingHorizontal: 10,
-						color: "#2596be",
-					}}>Settings</Text>
+			<ResidenciesList city = {city}></ResidenciesList>
+			<Text>{console.log(city)}</Text>
+			<Text>{city}</Text>
 			<TouchableOpacity onPress={handleSignOut} style={styles.button}>
 				<Text style={styles.buttonText}>Sign out</Text>
 			</TouchableOpacity>
@@ -29,22 +28,6 @@ const SettingsScreen = () => {
 	);
 };
 
-export default SettingsScreen;
+export default Listings;
 
-const styles = StyleSheet.create({
-	button: {
-		backgroundColor: "#1E88E5",
-		paddingVertical: 10,
-		paddingHorizontal: 60,
-		
-		borderRadius: 12,
-		width: 200,
-		marginTop: 20,
-	},
-	buttonText: {
-		color: "#FFF",
-		fontSize: 16,
-		fontWeight: "bold",
-		textAlign: "center",
-	},
-});
+const styles = StyleSheet.create({});
