@@ -17,3 +17,6 @@ firebase.js
 .metro-health-check*
 /secrets
 /firebase
+data_generator/__pycache__/image.cpython-310.pyc
+*.pyc
+/secrets
